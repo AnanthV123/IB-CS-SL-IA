@@ -12,12 +12,15 @@ public class MyProgram
         JFrame f = new JFrame("Button Example");
         JButton button = new JButton("clicker");
         button.setBounds(50,100,95,30);
+        JButton button2 = new JButton("test");
+        button2.setBounds(250,100,95,30);
         f.add(button);
+        f.add(button2);
         f.setSize(400,400);
         f.setLayout(null);
         f.setVisible(true);
         JFrame.setDefaultLookAndFeelDecorated(true);
-        
+
         // button.addActionListener(new ActionListener() {
         //     Scorecard s = new Scorecard();
         //     public void actionPerformed(ActionEvent e){  
@@ -26,6 +29,5 @@ public class MyProgram
         //         System.out.println(s.getSpeakerScoreNum());
         //     }   
         // });
-        
     }
 }
