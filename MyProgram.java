@@ -19,14 +19,22 @@ public class MyProgram
         // button for when the team shoots speaker
         JButton speakerButton = new JButton("Speaker");
         speakerButton.setBounds(0,90,95,200);
+        speakerButton.setBackground(Color.GRAY);
         
         // button for when the team shoots amp
         JButton ampButton = new JButton("Amp");
         ampButton.setBounds(200,0,100,60);
-        
+        ampButton.setBackground(Color.GRAY);
+
+        // button for trap
+        JButton trapButton = new JButton("Trap");
+        trapButton.setBounds(200, 125, 100, 100);
+        trapButton.setBackground(Color.GRAY);
+
         // adding the buttons to the frame
         f.add(speakerButton);
         f.add(ampButton);
+        f.add(trapButton);
 
         // declaring team and scorecard
         Scorecard qual1 = new Scorecard(1);
@@ -39,6 +47,8 @@ public class MyProgram
                 System.out.println("Speaker Score: " + qual1.getSpeakerScoreNum());
             }   
         });
+
+        // making amp button work
         ampButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
                 qual1.setAmpScoreNum(qual1.getAmpScoreNum()+1);
@@ -46,5 +56,12 @@ public class MyProgram
             }
         });
 
+        // making trap button work
+        trapButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                qual1.setTrap(!qual1.getTrap());
+                System.out.println("Trap: " + qual1.getTrap());
+            }
+        });
     }
 }
