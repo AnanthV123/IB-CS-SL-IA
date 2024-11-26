@@ -1,4 +1,5 @@
 public class Scorecard {
+    private int gameNum;
     private int speakerScoreNum;
     private int ampScoreNum;
     private int autonScoreNum;
@@ -8,7 +9,8 @@ public class Scorecard {
     private int totalScore;
 
     // Constructor
-    public Scorecard(){
+    public Scorecard(int g){
+        gameNum = g;
         speakerScoreNum = 0;
         ampScoreNum = 0;
         autonScoreNum = 0;
@@ -19,6 +21,9 @@ public class Scorecard {
     }
 
     // Getters
+    public int getGameNum(){
+        return gameNum;
+    }
     public int getSpeakerScoreNum(){
         return speakerScoreNum;
     }
@@ -42,6 +47,9 @@ public class Scorecard {
     }
 
     // Setters
+    public void setGameNum(int g){
+        gameNum = g;
+    }
     public void setSpeakerScoreNum(int s){
         speakerScoreNum = s;
     }

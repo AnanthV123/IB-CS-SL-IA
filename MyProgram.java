@@ -1,5 +1,6 @@
 import javax.swing.*;
-//import java.awt.*;
+
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -7,27 +8,43 @@ public class MyProgram
 {
     public static void main(String[] args)
     {
-        System.out.println("hello world");
-        
-        JFrame f = new JFrame("Button Example");
-        JButton button = new JButton("clicker");
-        button.setBounds(50,100,95,30);
-        JButton button2 = new JButton("test");
-        button2.setBounds(250,100,95,30);
-        f.add(button);
-        f.add(button2);
-        f.setSize(400,400);
+        // creating the frame
+        JFrame f = new JFrame("Field");
+        f.setSize(750,400);
         f.setLayout(null);
         f.setVisible(true);
+        f.setBackground(Color.BLACK);
         JFrame.setDefaultLookAndFeelDecorated(true);
+        
+        // button for when the team shoots speaker
+        JButton speakerButton = new JButton("Speaker");
+        speakerButton.setBounds(0,90,95,200);
+        
+        // button for when the team shoots amp
+        JButton ampButton = new JButton("Amp");
+        ampButton.setBounds(200,0,100,60);
+        
+        // adding the buttons to the frame
+        f.add(speakerButton);
+        f.add(ampButton);
 
-        // button.addActionListener(new ActionListener() {
-        //     Scorecard s = new Scorecard();
-        //     public void actionPerformed(ActionEvent e){  
-        //         button.setText("Yay");
-        //         s.setSpeakerScoreNum(s.getSpeakerScoreNum()+1);
-        //         System.out.println(s.getSpeakerScoreNum());
-        //     }   
-        // });
+        // declaring team and scorecard
+        Scorecard qual1 = new Scorecard(1);
+        Team  infuzed = new Team("Infuzed", 6908);
+
+        // making speaker button work
+        speakerButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                qual1.setSpeakerScoreNum(qual1.getSpeakerScoreNum()+1);
+                System.out.println("Speaker Score: " + qual1.getSpeakerScoreNum());
+            }   
+        });
+        ampButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                qual1.setAmpScoreNum(qual1.getAmpScoreNum()+1);
+                System.out.println("Amp Score: " + qual1.getAmpScoreNum());
+            }
+        });
+
     }
 }
