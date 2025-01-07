@@ -24,8 +24,30 @@ public class MyProgram
         // making start match button work
         startMatch.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
-                Match.playMatch();
-                //startPage.setVisible(false);
+                System.out.println("hit");
+                startMatch.setVisible(false);
+                startPage.getContentPane().removeAll();
+
+                // transition buttons
+                JTextField qualNumInput = new JTextField("Qual Number");
+                qualNumInput.setBounds(100, 20, 200, 40);
+                startPage.add(qualNumInput);
+                JTextField teamNameInput = new JTextField("Team Name");
+                teamNameInput.setBounds(100, 80, 200, 40);
+                startPage.add(teamNameInput);
+                JTextField teamNumInput = new JTextField("Team Number");
+                teamNumInput.setBounds(100, 140, 200, 40);
+                startPage.add(teamNumInput);
+                JButton submit = new JButton("Submit");
+                submit.setBounds(100, 200, 200, 40);
+                submit.setBackground(Color.GRAY);
+                startPage.add(submit);
+                submit.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e){
+                        int x = Integer.parseInt(qualNumInput.getText());
+                        System.out.println(x);
+                    }
+                });
             }
         });
     }

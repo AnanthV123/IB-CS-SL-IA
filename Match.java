@@ -4,7 +4,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Match {
-    public static void playMatch(){
+    private Scorecard qual;
+    private Team team;
+
+    public Match(int matchNum, String teamName, int teamNum){
+        qual = new Scorecard(matchNum);
+        team = new Team(teamName, teamNum);
+    }
+
+    public void playMatch(){
         // creating the frame
         JFrame f = new JFrame("Field");
         f.setSize(750,400);
@@ -36,22 +44,18 @@ public class Match {
         f.add(trapButton);
         f.add(endButton);
 
-        // declaring team and scorecard
-        Scorecard qual1 = new Scorecard(1);
-        Team infuzed = new Team("Infuzed", 6908);
-
         // making speaker button work
         speakerButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
-                qual1.setSpeakerScoreNum(qual1.getSpeakerScoreNum()+1);
-                System.out.println("Speaker Score: " + qual1.getSpeakerScoreNum());
+                qual.setSpeakerScoreNum(qual.getSpeakerScoreNum()+1);
+                System.out.println("Speaker Score: " + qual.getSpeakerScoreNum());
             }   
         });
         // making amp button work
         ampButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
-                qual1.setAmpScoreNum(qual1.getAmpScoreNum()+1);
-                System.out.println("Amp Score: " + qual1.getAmpScoreNum());
+                qual.setAmpScoreNum(qual1.getAmpScoreNum()+1);
+                System.out.println("Amp Score: " + qual.getAmpScoreNum());
             }
         });
         // making trap button work
