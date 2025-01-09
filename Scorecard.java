@@ -1,7 +1,7 @@
 public class Scorecard {
     private int gameNum;
-    private int speakerScoreNum;
-    private int ampScoreNum;
+    private int speakerCount;
+    private int ampCount;
     private int autonScoreNum;
     private boolean parked;
     private boolean trap;
@@ -11,8 +11,8 @@ public class Scorecard {
     // Constructor
     public Scorecard(int g){
         gameNum = g;
-        speakerScoreNum = 0;
-        ampScoreNum = 0;
+        speakerCount = 0;
+        ampCount = 0;
         autonScoreNum = 0;
         parked = false;
         trap = false;
@@ -20,15 +20,19 @@ public class Scorecard {
         totalScore = 0;
     }
 
+    public void calcTotal(){
+        totalScore += speakerCount*5 + ampCount*2;
+    }
+
     // Getters
     public int getGameNum(){
         return gameNum;
     }
-    public int getSpeakerScoreNum(){
-        return speakerScoreNum;
+    public int getSpeakerCount(){
+        return speakerCount;
     }
-    public int getAmpScoreNum(){
-        return ampScoreNum;
+    public int getAmpCount(){
+        return ampCount;
     }
     public int getAutonScoreNum(){
         return autonScoreNum;
@@ -50,11 +54,11 @@ public class Scorecard {
     public void setGameNum(int g){
         gameNum = g;
     }
-    public void setSpeakerScoreNum(int s){
-        speakerScoreNum = s;
+    public void setSpeakerCount(int s){
+        speakerCount = s;
     }
-    public void setAmpScoreNum(int am){
-        ampScoreNum = am;
+    public void setAmpCount(int am){
+        ampCount = am;
     }
     public void setAutonScoreNum(int au){
         autonScoreNum = au;

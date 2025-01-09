@@ -2,14 +2,26 @@ import javax.swing.*;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class Match {
     private Scorecard qual;
     private Team team;
+    private static ArrayList<Team> teamList = new ArrayList<Team>();
 
     public Match(int matchNum, String teamName, int teamNum){
         qual = new Scorecard(matchNum);
-        team = new Team(teamName, teamNum);
+        boolean check = true;
+        for (int i = 0; i < teamList.size(); i++){
+            if (teamNum == teamList.get(i).getNum()){
+                team = teamList.get(i);
+                check = false;
+                break;
+            }
+        }
+        if (check){
+            team = new Team(teamName, teamNum);
+        }
     }
 
     public void playMatch(){
@@ -47,22 +59,22 @@ public class Match {
         // making speaker button work
         speakerButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
-                qual.setSpeakerScoreNum(qual.getSpeakerScoreNum()+1);
-                System.out.println("Speaker Score: " + qual.getSpeakerScoreNum());
+                qual.setSpeakerCount(qual.getSpeakerCount()+1);
+                System.out.println("Speaker Score: " + qual.getSpeakerCount());
             }   
         });
         // making amp button work
         ampButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
-                qual.setAmpScoreNum(qual1.getAmpScoreNum()+1);
-                System.out.println("Amp Score: " + qual.getAmpScoreNum());
+                qual.setAmpCount(qual.getAmpCount()+1);
+                System.out.println("Amp Score: " + qual.getAmpCount());
             }
         });
         // making trap button work
         trapButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
-                qual1.setTrap(!qual1.getTrap());
-                System.out.println("Trap: " + qual1.getTrap());
+                qual.setTrap(!qual.getTrap());
+                System.out.println("Trap: " + qual.getTrap());
             }
         });
         // making end button work
