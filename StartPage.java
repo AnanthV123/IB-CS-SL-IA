@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
 
-public class MyProgram
+public class StartPage
 {
     public static JFrame menu;
     public static void main(String[] args)
@@ -196,7 +196,7 @@ public class MyProgram
                         teamInputPage.dispose();
                     }
                 });
-                
+
                 teamInputPage.setVisible(true);
             }
         });

@@ -105,7 +105,7 @@ public class Match {
                 field.dispose(); // getting rid of tracking page
                 qual.setComments(commentInput.getText()); // accepting input for comments
                 qual.calcTotal(); // calculating total score at the end of the game
-                MyProgram.menu.setVisible(true); // making main menu visible
+                StartPage.menu.setVisible(true); // making main menu visible
                 try{
                     team.addGame(qual);
                 }
