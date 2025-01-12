@@ -7,21 +7,10 @@ import java.util.ArrayList;
 public class Match {
     private Scorecard qual;
     private Team team;
-    private static ArrayList<Team> teamList = new ArrayList<Team>();
 
-    public Match(int matchNum, String teamName, int teamNum){
+    public Match(int matchNum, Team t){
         qual = new Scorecard(matchNum);
-        boolean check = true;
-        for (int i = 0; i < teamList.size(); i++){
-            if (teamNum == teamList.get(i).getNum()){
-                team = teamList.get(i);
-                check = false;
-                break;
-            }
-        }
-        if (check){
-            team = new Team(teamName, teamNum);
-        }
+        team = t;
     }
 
     public void playMatch(){
@@ -81,6 +70,13 @@ public class Match {
         endButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
                 f.dispose();
+                MyProgram.menu.setVisible(true);
+                team.addGame(qual);
+                System.out.println(Team.teamList.size());
+                for(int i = 0; i < Team.teamList.size(); i++){
+                    System.out.println("forloop working");
+                    System.out.println(Team.teamList.get(i));
+                }
             }
         });
     }

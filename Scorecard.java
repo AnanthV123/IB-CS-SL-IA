@@ -3,7 +3,6 @@ public class Scorecard {
     private int speakerCount;
     private int ampCount;
     private int autonScoreNum;
-    private boolean parked;
     private boolean trap;
     private boolean climb;
     private int totalScore;
@@ -14,7 +13,6 @@ public class Scorecard {
         speakerCount = 0;
         ampCount = 0;
         autonScoreNum = 0;
-        parked = false;
         trap = false;
         climb = false;
         totalScore = 0;
@@ -36,9 +34,6 @@ public class Scorecard {
     }
     public int getAutonScoreNum(){
         return autonScoreNum;
-    }
-    public boolean getParked(){
-        return parked;
     }
     public boolean getTrap(){
         return trap;
@@ -62,9 +57,6 @@ public class Scorecard {
     }
     public void setAutonScoreNum(int au){
         autonScoreNum = au;
-    }
-    public void setParked(boolean p){
-        parked = p;
     }
     public void setTrap(boolean t){
         trap = t;
