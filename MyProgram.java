@@ -16,7 +16,7 @@ public class MyProgram
         menu.setResizable(false);
         menu.setVisible(true);
 
-        // declaring and initializing buttons
+        // declaring buttons
         // button to start tracking a match
         JButton startMatch = new JButton("Start Match");
         startMatch.setBounds(100, 20, 200, 40);
@@ -31,7 +31,7 @@ public class MyProgram
         menu.add(startMatch);
         menu.add(teamInfo);
 
-        // making start match button work
+        // initializing start match button (making it work)
         startMatch.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
                 
@@ -43,31 +43,41 @@ public class MyProgram
                 matchInputPage.setLocationRelativeTo(null);
 
                 // inputs for qual/team details
+                // match number input
                 JTextField qualNumInput = new JTextField("Qual Number");
                 qualNumInput.setBounds(100, 20, 200, 40);
-                matchInputPage.add(qualNumInput);
 
+                // team name input
                 JTextField teamNameInput = new JTextField("Team Name");
                 teamNameInput.setBounds(100, 80, 200, 40);
-                matchInputPage.add(teamNameInput);
 
+                // team number input
                 JTextField teamNumInput = new JTextField("Team Number");
                 teamNumInput.setBounds(100, 140, 200, 40);
+
+                // adding inputs to the input page
+                matchInputPage.add(qualNumInput);
+                matchInputPage.add(teamNameInput);
                 matchInputPage.add(teamNumInput);
 
                 // button to accept the inputs and start the match
                 JButton submit = new JButton("Submit");
                 submit.setBounds(100, 200, 200, 40);
                 submit.setBackground(Color.GRAY);
+                matchInputPage.add(submit);
 
-                // making submit button work
+                // initializing submit button (making it work)
                 submit.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e){
                         try{
-                            int qualNum = Integer.parseInt(qualNumInput.getText());
-                            String teamName = teamNameInput.getText();
-                            int teamNum = Integer.parseInt(teamNumInput.getText());
+                            // taking in inputs
+                            int qualNum = Integer.parseInt(qualNumInput.getText()); // accepting match number input
+                            String teamName = teamNameInput.getText(); // accepting team name input
+                            int teamNum = Integer.parseInt(teamNumInput.getText()); // accepting team number input
 
+                            // checking if there is already a team with the same team number
+                            // if there is, it equates the team variable to the pre-existing team
+                            // if not, it creates a new team
                             Team team = new Team();
                             boolean check = true;
                             for (int i = 0; i < Team.teamList.size(); i++){
@@ -81,12 +91,14 @@ public class MyProgram
                                 Team.teamList.add(team);
                             }
 
+                            // initializing match (setting up page to start the match data collection)
                             Match m = new Match(qualNum, team);
                             m.playMatch();
                             matchInputPage.dispose();
                             menu.setVisible(false);
                         }
                         catch(NumberFormatException ime){
+                            // displays error message for the user in case they input incorrectly
                             JLabel l = new JLabel("Please enter appropriate values.");
                             l.setBounds(100, 260, 200, 40);
                             l.setVisible(true);
@@ -96,31 +108,34 @@ public class MyProgram
                         }
                     }
                 });
-                matchInputPage.add(submit);
                 matchInputPage.setVisible(true);
             }
         });
+
+        // initializing retrieve information button (making it work)
         teamInfo.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
-                
+                // creating page to accept input for which team to choose
                 JFrame teamInputPage = new JFrame("Team Information Page");
                 teamInputPage.setLayout(null);
                 teamInputPage.setSize(400, 400);
                 teamInputPage.setLocationRelativeTo(null);
 
+                // team number input
                 JTextField teamNumInput = new JTextField("Team Number");
                 teamNumInput.setBounds(100, 20, 200, 40);
                 teamInputPage.add(teamNumInput);
 
+                // button to accept the input and return the information
                 JButton submit = new JButton("Submit");
                 submit.setBounds(100, 80, 200, 40);
                 submit.setBackground(Color.GRAY);
                 submit.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e){
-                        
                         try{
-                            int teamNum = Integer.parseInt(teamNumInput.getText());
+                            int teamNum = Integer.parseInt(teamNumInput.getText()); // accepting team number input
                         
+                            // retrieving the necessary file and displaying it
                             final File innerData = new File(teamNum + "_Data.txt");
                             SwingUtilities.invokeLater(() -> {
                                 JFrame dataDisplay = new JFrame("Text File Viewer");
@@ -133,33 +148,38 @@ public class MyProgram
                                         textArea.append(line + "\n");
                                     }
                                 } catch (IOException ee) {
-                                    textArea.setText("Error reading file: " + ee.getMessage());
+                                    textArea.setText("No current information on team " + teamNum);
                                 }
-
                                 dataDisplay.add(scrollPane);
                                 dataDisplay.pack();
                                 dataDisplay.setVisible(true);
-        });
+                            });
                         }
                         catch(NumberFormatException ime){
+                            // displays error message for the user in case they input incorrectly
                             JLabel l = new JLabel("Please enter appropriate values.\"");
                             l.setBounds(100, 140, 200, 40);
-                            teamInputPage.add(l);
                             l.setVisible(true);
+                            teamInputPage.add(l);
                             teamInputPage.revalidate();
                             teamInputPage.repaint();
                         }
                     }
                 });
 
+                // button to exit from the information page
                 JButton exitButton = new JButton("Exit");
                 exitButton.setBounds(0, 0, 75, 20);
                 exitButton.setBackground(Color.GRAY);
+
+                // initializing exit button (making it work)
                 exitButton.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e){
                         teamInputPage.dispose();
                     }
                 });
+
+                // adding buttons to the information page
                 teamInputPage.add(exitButton);
                 teamInputPage.add(submit);
                 teamInputPage.setVisible(true);

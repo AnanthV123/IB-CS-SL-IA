@@ -20,8 +20,9 @@ public class Scorecard {
         comments = "";
     }
 
+    // calculates total score
     public void calcTotal(){
-        totalScore += speakerCount*5 + ampCount*2;
+        totalScore += speakerCount*2 + ampCount*1;
     }
 
     // Getters

@@ -15,84 +15,102 @@ public class Match {
 
     public void playMatch(){
         // creating the frame
-        JFrame f = new JFrame("Field");
-        f.setSize(750,400);
-        f.setLayout(null);
-        f.setVisible(true);
-        f.setBackground(Color.BLACK);
-        //JFrame.setDefaultLookAndFeelDecorated(true);
+        JFrame field = new JFrame("Field");
+        field.setSize(750,400);
+        field.setLayout(null);
+        field.setVisible(true);
+        field.setBackground(Color.BLACK);
         
         // button for when the team shoots speaker
         JButton speakerButton = new JButton("Speaker");
         speakerButton.setBounds(0,90,95,200);
         speakerButton.setBackground(Color.GRAY);
+
         // button for when the team shoots amp
         JButton ampButton = new JButton("Amp");
         ampButton.setBounds(200,0,100,60);
         ampButton.setBackground(Color.GRAY);
+
         // button for trap
         JButton trapButton = new JButton("Trap");
-        trapButton.setBounds(200, 125, 100, 100);
+        trapButton.setBounds(200, 125, 100, 40);
         trapButton.setBackground(Color.GRAY);
+
         // button for climb
         JButton climbButton = new JButton("Climb");
-        climbButton.setBounds(200, 250, 100, 40);
+        climbButton.setBounds(200, 185, 100, 40);
         climbButton.setBackground(Color.GRAY);
+
+        // button for auton
+        JButton autonButton = new JButton("Auton");
+        autonButton.setBounds(200, 245, 100, 40);
+        autonButton.setBackground(Color.GRAY);
+
         // text field for comments
         JTextArea commentInput = new JTextArea("Comments");
         commentInput.setBounds(350, 50, 200, 300);
+
         // button for ending the match
         JButton endButton = new JButton("End Match");
         endButton.setBounds(650, 300, 100, 100);
         endButton.setBackground(Color.GRAY);
 
         // adding the buttons to the frame
-        f.add(speakerButton);
-        f.add(ampButton);
-        f.add(trapButton);
-        f.add(endButton);
-        f.add(climbButton);
-        f.add(commentInput);
+        field.add(speakerButton);
+        field.add(ampButton);
+        field.add(trapButton);
+        field.add(climbButton);
+        field.add(commentInput);
+        field.add(autonButton);
+        field.add(endButton);
 
-        // making speaker button work
+        // initializing speaker button (making it work)
         speakerButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
                 qual.setSpeakerCount(qual.getSpeakerCount()+1);
-                System.out.println("Speaker Score: " + qual.getSpeakerCount());
             }   
         });
-        // making amp button work
+
+        // initializing amp button (making it work)
         ampButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
                 qual.setAmpCount(qual.getAmpCount()+1);
-                System.out.println("Amp Score: " + qual.getAmpCount());
             }
         });
-        // making trap button work
+
+        // initializing trap button (making it work)
         trapButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
                 qual.setTrap(!qual.getTrap());
-                System.out.println("Trap: " + qual.getTrap());
             }
         });
-        // making end button work
-        endButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                f.dispose();
-                qual.setComments(commentInput.getText());
-                MyProgram.menu.setVisible(true);
-                try{
-                    team.addGame(qual);
-                }
-                catch(IOException ee){
-                    System.out.println("oopsies");
-                }
-            }
-        });
+
+        // initializing climb button (making it work)
         climbButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
                 qual.setClimb(!qual.getClimb());
                 System.out.println(qual.getClimb());
+            }
+        });
+
+        // initializing auton button (making it work)
+        autonButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                qual.setAutonCount(qual.getAutonCount()+1);
+            }
+        });
+
+        // making end button work
+        endButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                field.dispose(); // getting rid of tracking page
+                qual.setComments(commentInput.getText()); // accepting input for comments
+                qual.calcTotal(); // calculating total score at the end of the game
+                MyProgram.menu.setVisible(true); // making main menu visible
+                try{
+                    team.addGame(qual);
+                }
+                catch(IOException ee){}
             }
         });
     }
