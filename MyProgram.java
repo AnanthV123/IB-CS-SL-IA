@@ -66,6 +66,11 @@ public class MyProgram
                 submit.setBackground(Color.GRAY);
                 matchInputPage.add(submit);
 
+                // button to exit from the information page
+                JButton exitButton = new JButton("Exit");
+                exitButton.setBounds(0, 0, 75, 20);
+                exitButton.setBackground(Color.GRAY);
+                matchInputPage.add(exitButton);
                 // initializing submit button (making it work)
                 submit.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e){
@@ -106,6 +111,13 @@ public class MyProgram
                             matchInputPage.revalidate();
                             matchInputPage.repaint();
                         }
+                    }
+                });
+
+                // initializing exit button (making it work)
+                exitButton.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e){
+                        matchInputPage.dispose();
                     }
                 });
                 matchInputPage.setVisible(true);
