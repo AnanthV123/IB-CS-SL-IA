@@ -19,7 +19,6 @@ public class Match {
         field.setSize(750,400);
         field.setLayout(null);
         field.setVisible(true);
-        field.setBackground(Color.BLACK);
         
         // button for when the team shoots speaker
         JButton speakerButton = new JButton("Speaker");

@@ -22,7 +22,9 @@ public class Scorecard {
 
     // calculates total score
     public void calcTotal(){
-        totalScore += speakerCount*2 + ampCount*1;
+        totalScore += speakerCount*2 + ampCount*1 + autonCount*5;
+        if(trap){totalScore += 5;}
+        if(climb){totalScore += 3;}
     }
 
     // Getters

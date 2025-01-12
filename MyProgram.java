@@ -61,18 +61,13 @@ public class MyProgram
                 matchInputPage.add(teamNumInput);
 
                 // button to accept the inputs and start the match
-                JButton submit = new JButton("Submit");
-                submit.setBounds(100, 200, 200, 40);
-                submit.setBackground(Color.GRAY);
-                matchInputPage.add(submit);
+                JButton submitButton = new JButton("Submit");
+                submitButton.setBounds(100, 200, 200, 40);
+                submitButton.setBackground(Color.GRAY);
+                matchInputPage.add(submitButton);
 
-                // button to exit from the information page
-                JButton exitButton = new JButton("Exit");
-                exitButton.setBounds(0, 0, 75, 20);
-                exitButton.setBackground(Color.GRAY);
-                matchInputPage.add(exitButton);
                 // initializing submit button (making it work)
-                submit.addActionListener(new ActionListener() {
+                submitButton.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e){
                         try{
                             // taking in inputs
@@ -104,15 +99,21 @@ public class MyProgram
                         }
                         catch(NumberFormatException ime){
                             // displays error message for the user in case they input incorrectly
-                            JLabel l = new JLabel("Please enter appropriate values.");
-                            l.setBounds(100, 260, 200, 40);
-                            l.setVisible(true);
-                            matchInputPage.add(l);
+                            JLabel errorMsg = new JLabel("Please enter appropriate values.");
+                            errorMsg.setBounds(100, 260, 200, 40);
+                            errorMsg.setVisible(true);
+                            matchInputPage.add(errorMsg);
                             matchInputPage.revalidate();
                             matchInputPage.repaint();
                         }
                     }
                 });
+
+                // button to exit from the information page
+                JButton exitButton = new JButton("Exit");
+                exitButton.setBounds(0, 0, 75, 20);
+                exitButton.setBackground(Color.GRAY);
+                matchInputPage.add(exitButton);
 
                 // initializing exit button (making it work)
                 exitButton.addActionListener(new ActionListener() {
@@ -120,6 +121,7 @@ public class MyProgram
                         matchInputPage.dispose();
                     }
                 });
+
                 matchInputPage.setVisible(true);
             }
         });
@@ -139,10 +141,13 @@ public class MyProgram
                 teamInputPage.add(teamNumInput);
 
                 // button to accept the input and return the information
-                JButton submit = new JButton("Submit");
-                submit.setBounds(100, 80, 200, 40);
-                submit.setBackground(Color.GRAY);
-                submit.addActionListener(new ActionListener() {
+                JButton submitButton = new JButton("Submit");
+                submitButton.setBounds(100, 80, 200, 40);
+                submitButton.setBackground(Color.GRAY);
+                teamInputPage.add(submitButton);
+
+                // initializing submit button (making it work)
+                submitButton.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e){
                         try{
                             int teamNum = Integer.parseInt(teamNumInput.getText()); // accepting team number input
@@ -150,10 +155,9 @@ public class MyProgram
                             // retrieving the necessary file and displaying it
                             final File innerData = new File(teamNum + "_Data.txt");
                             SwingUtilities.invokeLater(() -> {
-                                JFrame dataDisplay = new JFrame("Text File Viewer");
+                                JFrame dataDisplay = new JFrame(teamNum + " Data");
                                 JTextArea textArea = new JTextArea(20, 40);
                                 JScrollPane scrollPane = new JScrollPane(textArea);
-
                                 try (BufferedReader reader = new BufferedReader(new FileReader(innerData))) {
                                     String line;
                                     while ((line = reader.readLine()) != null) {
@@ -164,15 +168,16 @@ public class MyProgram
                                 }
                                 dataDisplay.add(scrollPane);
                                 dataDisplay.pack();
+                                dataDisplay.setLocationRelativeTo(null);
                                 dataDisplay.setVisible(true);
                             });
                         }
                         catch(NumberFormatException ime){
                             // displays error message for the user in case they input incorrectly
-                            JLabel l = new JLabel("Please enter appropriate values.\"");
-                            l.setBounds(100, 140, 200, 40);
-                            l.setVisible(true);
-                            teamInputPage.add(l);
+                            JLabel errorMsg = new JLabel("Please enter appropriate values.\"");
+                            errorMsg.setBounds(100, 140, 200, 40);
+                            errorMsg.setVisible(true);
+                            teamInputPage.add(errorMsg);
                             teamInputPage.revalidate();
                             teamInputPage.repaint();
                         }
@@ -183,6 +188,7 @@ public class MyProgram
                 JButton exitButton = new JButton("Exit");
                 exitButton.setBounds(0, 0, 75, 20);
                 exitButton.setBackground(Color.GRAY);
+                teamInputPage.add(exitButton);
 
                 // initializing exit button (making it work)
                 exitButton.addActionListener(new ActionListener() {
@@ -190,10 +196,7 @@ public class MyProgram
                         teamInputPage.dispose();
                     }
                 });
-
-                // adding buttons to the information page
-                teamInputPage.add(exitButton);
-                teamInputPage.add(submit);
+                
                 teamInputPage.setVisible(true);
             }
         });
