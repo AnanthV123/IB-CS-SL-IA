@@ -2,20 +2,22 @@ public class Scorecard {
     private int gameNum;
     private int speakerCount;
     private int ampCount;
-    private int autonScoreNum;
+    private int autonCount;
     private boolean trap;
     private boolean climb;
     private int totalScore;
+    private String comments;
 
     // Constructor
     public Scorecard(int g){
         gameNum = g;
         speakerCount = 0;
         ampCount = 0;
-        autonScoreNum = 0;
+        autonCount = 0;
         trap = false;
         climb = false;
         totalScore = 0;
+        comments = "";
     }
 
     public void calcTotal(){
@@ -32,8 +34,8 @@ public class Scorecard {
     public int getAmpCount(){
         return ampCount;
     }
-    public int getAutonScoreNum(){
-        return autonScoreNum;
+    public int getAutonCount(){
+        return autonCount;
     }
     public boolean getTrap(){
         return trap;
@@ -43,6 +45,9 @@ public class Scorecard {
     }
     public int getTotalScore(){
         return totalScore;
+    }
+    public String getComments(){
+        return comments;
     }
 
     // Setters
@@ -55,8 +60,8 @@ public class Scorecard {
     public void setAmpCount(int am){
         ampCount = am;
     }
-    public void setAutonScoreNum(int au){
-        autonScoreNum = au;
+    public void setAutonCount(int au){
+        autonCount = au;
     }
     public void setTrap(boolean t){
         trap = t;
@@ -66,5 +71,8 @@ public class Scorecard {
     }
     public void setTotalScore(int ts){
         totalScore = ts;
+    }
+    public void setComments(String s){
+        comments = s;
     }
 }

@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.*;
 
 public class MyProgram
 {
@@ -119,18 +120,26 @@ public class MyProgram
                         
                         try{
                             int teamNum = Integer.parseInt(teamNumInput.getText());
-                            
-                            Team team = new Team();
-                            for (int i = 0; i < Team.teamList.size(); i++){
-                                if (teamNum == Team.teamList.get(i).getNum()){
-                                    team = Team.teamList.get(i);
-                                }
-                            }
+                        
+                            final File innerData = new File(teamNum + "_Data.txt");
+                            SwingUtilities.invokeLater(() -> {
+                                JFrame dataDisplay = new JFrame("Text File Viewer");
+                                JTextArea textArea = new JTextArea(20, 40);
+                                JScrollPane scrollPane = new JScrollPane(textArea);
 
-                            JFrame dataDisplay = new JFrame("Data Display");
-                            dataDisplay.setSize(2000, 1000);
-                            dataDisplay.setLayout(null);
-                            
+                                try (BufferedReader reader = new BufferedReader(new FileReader(innerData))) {
+                                    String line;
+                                    while ((line = reader.readLine()) != null) {
+                                        textArea.append(line + "\n");
+                                    }
+                                } catch (IOException ee) {
+                                    textArea.setText("Error reading file: " + ee.getMessage());
+                                }
+
+                                dataDisplay.add(scrollPane);
+                                dataDisplay.pack();
+                                dataDisplay.setVisible(true);
+        });
                         }
                         catch(NumberFormatException ime){
                             JLabel l = new JLabel("Please enter appropriate values.\"");

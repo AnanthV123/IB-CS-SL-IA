@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
+import java.io.*;
 
 public class Match {
     private Scorecard qual;
@@ -34,6 +34,13 @@ public class Match {
         JButton trapButton = new JButton("Trap");
         trapButton.setBounds(200, 125, 100, 100);
         trapButton.setBackground(Color.GRAY);
+        // button for climb
+        JButton climbButton = new JButton("Climb");
+        climbButton.setBounds(200, 250, 100, 40);
+        climbButton.setBackground(Color.GRAY);
+        // text field for comments
+        JTextArea commentInput = new JTextArea("Comments");
+        commentInput.setBounds(350, 50, 200, 300);
         // button for ending the match
         JButton endButton = new JButton("End Match");
         endButton.setBounds(650, 300, 100, 100);
@@ -44,6 +51,8 @@ public class Match {
         f.add(ampButton);
         f.add(trapButton);
         f.add(endButton);
+        f.add(climbButton);
+        f.add(commentInput);
 
         // making speaker button work
         speakerButton.addActionListener(new ActionListener() {
@@ -68,15 +77,22 @@ public class Match {
         });
         // making end button work
         endButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e){
+            public void actionPerformed(ActionEvent e) {
                 f.dispose();
+                qual.setComments(commentInput.getText());
                 MyProgram.menu.setVisible(true);
-                team.addGame(qual);
-                System.out.println(Team.teamList.size());
-                for(int i = 0; i < Team.teamList.size(); i++){
-                    System.out.println("forloop working");
-                    System.out.println(Team.teamList.get(i));
+                try{
+                    team.addGame(qual);
                 }
+                catch(IOException ee){
+                    System.out.println("oopsies");
+                }
+            }
+        });
+        climbButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                qual.setClimb(!qual.getClimb());
+                System.out.println(qual.getClimb());
             }
         });
     }
