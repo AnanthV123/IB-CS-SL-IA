@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
 
-public class StartPage
+public class MyProgram
 {
     public static JFrame menu;
     public static void main(String[] args)
